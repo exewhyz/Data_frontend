@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-
 const Users = () => {
   const host = "http://localhost:5000"
   const [users, setUsers] = useState([]);
@@ -19,6 +18,7 @@ const Users = () => {
 
   useEffect(() => {
     getUsers();
+    // eslint-disable-next-line
   }, []);
 
   const addUsers = async () => {
@@ -157,35 +157,35 @@ const Users = () => {
           </div>
         </div>
       </div>
-      <div style={{overflowX: "Scroll"}}>
-      <table className="table" id='table-to-xls'>
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Status</th>
-            <th scope="col">Delete User</th>
-            <th scope="col">Update User</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((users) => {
-            return (
-              <tr key={users.id}>
-                <th scope="row">{users.id}</th>
-                <td>{users.name}</td>
-                <td>{users.email}</td>
-                <td>{users.gender}</td>
-                <td>{users.status}</td>
-                <td><Trash style={{ cursor: "pointer" }} onClick={() => { deleteUSer(users.id) }} /></td>
-                <td><PencilSquare onClick={() => { updateUser(users) }} style={{ cursor: "pointer" }} /></td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <div style={{ overflowX: "Scroll" }} className="scrollbar">
+        <table className="table" id='table-to-xls'>
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delete User</th>
+              <th scope="col">Update User</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((users) => {
+              return (
+                <tr key={users.id}>
+                  <th scope="row">{users.id}</th>
+                  <td>{users.name}</td>
+                  <td>{users.email}</td>
+                  <td>{users.gender}</td>
+                  <td>{users.status}</td>
+                  <td><Trash style={{ cursor: "pointer" }} onClick={() => { deleteUSer(users.id) }} /></td>
+                  <td><PencilSquare onClick={() => { updateUser(users) }} style={{ cursor: "pointer" }} /></td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   )
